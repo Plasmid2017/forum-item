@@ -1,0 +1,35 @@
+<li class="content-li">
+	<a href="/posts/<%= post._id %>">
+		<p class="content-p"><%= post.title %></p>
+		<div class="pic">
+			<img src="/img/<%= post.pic %>" alt="" />
+		</div>
+		<span class="text">
+			<%- post.content %>
+		</span>
+	</a>
+	<div class="content-foot">
+		<div class="information">
+			<img src="/img/<%= post.author.avatar %>" alt="" />
+			<i><%= post.author.name %></i>
+		</div>
+		<div class="parts">
+			<div class="parts-one">
+				<img src="/images/i3.png" alt="" />
+				<i>50</i>
+			</div>
+			<div class="parts-two">
+				<img src="/images/i4.png" alt="" />
+				<i><%= post.commentsCount %></i>
+			</div>
+			<div class="parts-three">
+				<img src="/images/i5.png" alt="" />
+				<i>100</i>
+			</div>
+		</div>
+	</div>
+</li>
+
+
+
+

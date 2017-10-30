@@ -1,13 +1,10 @@
 <%- include('header') %>
 
-<div class="main-content">
-	<ul>
-		<% posts.forEach(function (post) { %>
-			
-		  <%- include('components/post-content', { post: post }) %>
-		<% }) %>
-	</ul>
-</div>
+
+<%- include('components/post-content') %>
+
+<%- include('components/comments') %>
+
 <%- include('footer') %>
 
 <script>
@@ -16,4 +13,3 @@
 			$(this).next().html(num1);
 		});
 </script>
-

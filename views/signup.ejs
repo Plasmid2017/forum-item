@@ -1,0 +1,50 @@
+<%- include('header') %>
+    <form class="ui form segment" method="post" enctype="multipart/form-data">
+      <div class="field required">
+        <label>用户名</label>
+        <input placeholder="用户名" type="text" name="name">
+      </div>
+      <div class="field required">
+        <label>密码</label>
+        <input placeholder="密码" type="password" name="password">
+      </div>
+      <div class="field required">
+        <label>重复密码</label>
+        <input placeholder="重复密码" type="password" name="repassword">
+      </div>
+      <div class="field required">
+        <label>性别</label>
+        <select class="ui compact selection dropdown" name="gender">
+          <option value="m">男</option>
+          <option value="f">女</option>
+          <option value="x">保密</option>
+        </select>
+      </div>
+      <div class="field required">
+        <label>头像</label>
+        <span class="upload-pic">
+          <img src="" id='show' >
+          <input type="file" id="file_input" name="avatar" style="opacity:0" onchange="c()">
+        </span>
+      </div>
+      <div class="field required">
+        <label style="margin-top: 50px">个人简介</label>
+        <textarea name="bio" rows="5"></textarea>
+      </div>
+      <input type="submit" class="ui button fluid" value="注册">
+    </form>
+<%- include('footer') %>
+<script>
+  function c() {
+	  var r= new FileReader();
+	  f=document.getElementById('file_input').files[0];
+	  r.readAsDataURL(f);
+	  r.onload=function  (e) {
+	      document.getElementById('show').src=this.result;
+	  };
+	  var Oimg=document.querySelector('img');
+	  Oimg.style.height='100px';
+	  Oimg.style.width='100px';
+  }
+</script>
+

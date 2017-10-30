@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/question.css">
+</head>
+<body>
+	<div class="ui grid">
+
+  <div class="eight wide column">
+    <form action="/posts" method="post" enctype="multipart/form-data">
+    <div class="container-fulid col-lg-6 col-lg-offset-3 header">
+        <div class="row header-row hidden-lg">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 header-one">
+                <span class="out">取消</span>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 header-two">提问</div>
+        
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 header-three">
+                <input type="submit" class="submit1" value="提交">
+            </div>
+         
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-lg-offset-3">
+        <div  class="article1">
+            <textarea name="title" id="titles1" maxlength="49" placeholder="请输入标题"></textarea>
+            <div>
+                <em>0</em>/49
+            </div>
+        </div>
+        
+        <div  class="article2">
+            <textarea name="content" id="titles2" placeholder="请输入详情"></textarea>
+         		<div class="article2-footer">
+                <div id="imgPreview"></div>
+                <span class="upload-img"><input id="fileUpload"  name="pic"  accept="image/*" type="file" multiple="multiple"></span>
+       			</div>
+        </div>
+     
+  
+        
+    <input type="submit" value="发布" class="ui button btn btn-success visible-lg col-lg-1 col-lg-offset-1 submit2">
+    <div class=" btn btn-default visible-lg col-lg-1 col-lg-offset-1 submit2 out">取消</div>
+</div>
+</form>
+  </div>
+</div>
+</body>
+<script src="/js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+    $("#fileUpload").change(function () {
+    if (typeof (FileReader) != "undefined") {
+    var dvPreview = $("#imgPreview");
+    dvPreview.html("");
+    var regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
+    $($(this)[0].files).each(function () {
+        var file = $(this);
+        if (regex.test(file[0].name.toLowerCase())) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = $("<img />");
+                img.attr("src", e.target.result);
+                dvPreview.append(img);
+            }
+            reader.readAsDataURL(file[0]);
+        } else {
+            alert(file[0].name + " is not a valid image file.");
+            dvPreview.html("");
+            return false;
+        }
+    });
+    } else {
+    alert("This browser does not support HTML5 FileReader.");
+    }
+    });
+    });
+
+    $(".out").click(function(){
+        console.log(1);
+        location.href="http://localhost:3000/posts"
+    })
+    $("#titles1").keyup(function(){
+       if($("#titles1").val()!=""){
+           
+        var i= $("#titles1").val().length;
+        $("em").html(i);
+        if(i>=49){
+            $("em").html(49);
+        }
+        console.log(i);
+   
+       }
+    
+    })
+    $("#titles1").keydown(function(){
+        var i= $("#titles1").val().length-1;
+        if(i<=0){
+        $("em").html(0);
+     }
+    })
+    if($(window).width()>=1200){
+        $(".article1").css({"border":"2px solid #000000",
+                            "border-radius":"5px",
+                            "margin":"50px 0 50px 0",
+                            "padding":"5px"
+    });
+        $(".article2").css({"border":"2px solid #000000",
+                            "border-radius":"5px",
+                            "padding":"5px"
+    });
+
+    }
+    </script>
+    
+</html>
